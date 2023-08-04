@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rastgele Sayı Üret</title>
+</head>
+<body>
+  <form>
+    <label for="minValue">Minimum Değer:</label> <br>
+    <input type="range" id="minValue" min="1" max="100">
+    <input type="text"  id="minShow">
+    <br>
+    <label for="maxValue">Maksimum Değer:</label> <br>
+    <input type="range" id="maxValue" min="1" max="100">
+    <input type="text"  id="maxShow">
+  </form>
+
+  <button onclick="rastgeleSayiUret()"> Üret</button>
+
+  <hr>
+
+  <label id="randomNumberLabel">Rastgele Sayı:</label>
+
+  <script>
+    const minValue = document.getElementById("minValue");
+    const minShow = document.getElementById("minShow");
+    minShow.value = minValue.value;
+
+    const maxValue = document.getElementById("maxValue");
+    const maxShow = document.getElementById("maxShow");
+    maxShow.value = maxValue.value;
+
+    minValue.addEventListener("input", function () {
+      minShow.value = minValue.value;
+    });
+
+    maxValue.addEventListener("input", function () {
+      maxShow.value = maxValue.value;
+    });
+
+    function rastgeleSayiUret() {
+      const minValue = parseInt(document.getElementById("minValue").value);
+      const maxValue = parseInt(document.getElementById("maxValue").value);
+
+      if (minValue < maxValue) {
+        const randomNumber = Math.floor(Math.random() * (maxValue - minValue + 1)) + minValue;
+        document.getElementById("randomNumberLabel").textContent = `Rastgele Sayı: ${randomNumber}`;
+      } else {
+        alert("Minimum değer Maximum değerden büyük olamaz.");
+      }
+    }
+  </script>
+</body>
+</html>
